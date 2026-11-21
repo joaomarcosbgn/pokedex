@@ -7,11 +7,13 @@ public class PokedexGUI extends JFrame {
     public PokedexGUI() {
         super("Pokédex");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 360);
+        setSize(1100, 750);
         setLocationRelativeTo(null);
+        getContentPane().setBackground(new Color(180,35,45));
 
         JLabel titulo = new JLabel("Minha Pokédex", SwingConstants.CENTER);
         titulo.setFont(new Font("SansSerif", Font.BOLD, 24));
+        titulo.setForeground(Color.WHITE);
         JTextField busca = new JTextField(18);
         JButton botao = new JButton("Buscar Pokémon");
         JTextArea resultado = new JTextArea("Digite o nome ou número de um Pokémon para começar.");
@@ -46,8 +48,32 @@ public class PokedexGUI extends JFrame {
             }.execute();
         });
         setLayout(new BorderLayout(10, 10));
-        add(titulo, BorderLayout.NORTH);
+        JPanel cabecalho = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 15));
+        
+        cabecalho.setBackground(new Color(180, 35, 45));
+
+        JLabel luzAzul = new JLabel("●");
+
+        luzAzul.setFont(new Font("SansSerif", Font.BOLD, 45));
+
+        luzAzul.setForeground(new Color(0, 200, 255));
+
+        cabecalho.add(luzAzul);
+        
+
+        cabecalho.add(titulo);
+
+        add(cabecalho, BorderLayout.NORTH);
         JPanel centro = new JPanel(new BorderLayout(10, 10));
+        centro.setBackground(new Color(25, 30, 40));
+
+        centro.setBorder(
+        BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(15,20, 30), 8),
+            BorderFactory.createEmptyBorder(20, 20, 20, 20)
+
+        )
+        );
         centro.add(topo, BorderLayout.NORTH);
         centro.add(new JScrollPane(resultado), BorderLayout.CENTER);
         add(centro, BorderLayout.CENTER);
